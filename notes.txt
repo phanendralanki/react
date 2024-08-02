@@ -1,0 +1,348 @@
+******** 1. Igniting the App ***********
+
+1.Creating Hello world using HTML 
+<div id="container">
+        <h1>Hello World!</h1>
+</div>
+
+
+2.Hello world from Javascript
+    <div id="root">
+            
+    </div>
+    <script>
+        const heading = document.createElement("h1");
+        heading.innerHTML = "Hello World from JavaScript!";
+        const root = document.getElementById("root");
+        root.appendChild(heading);
+    </script>
+
+
+3.Hello world from React
+
+i.Copy the Development cdn's from react official website.
+ii.write the React code after the cdn links.
+
+<div id="root">
+
+</div>
+
+
+const heading = React.createElement("h1", {id:"heading"}, "Hello world from React! ");
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(heading);
+
+
+4.Learn how to create nested structure using react 
+
+// Nested structure/elsements
+
+/* 
+    <div id="parent">
+        <div id="child">
+            <h1 id="heading">I am h1 tag</h1>
+        </div>
+    </div>
+*/
+
+/* 
+    ReactElement(Object) => HTML (Browser understands)
+*/
+
+code:
+const parent = React.createElement(
+  "div",
+  { id: "parent" },
+  React.createElement(
+    "div",
+    { id: "child" },
+    React.createElement("h1", { id: "heading" }, "I am an h1 tag")
+  )
+);
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(parent);
+
+- To overcome the problem of the complex code, jsx is introduced.
+
+
+******** 2. Igniting The App 🚀 *************
+
+=> Igniting the App - Making the code for production ready.
+=> How we can prepare our own create-react-app .
+
+=> How we can make our App Fast?
+   - can react makes our app fast - no, only for an extend 
+   we also need lot of packages that makes our app fast.
+
+1.npm
+- it does not stands for node package manager, it manages 
+the node packages.
+- npm is a standard repository for all the packages.
+- npm init - to configure npm in our project.
+
+What is package.json?
+- It is a configuration for our npm.
+Why do we need?
+- npm is used to manage the packages in our project,
+package.json will take care of the versions of packages.
+
+What is package-lock.json?
+package-lock.json- keeps the exact version of the dependency 
+that is installed.
+- very useful during production, checks whether the version that 
+we have in our development i.e in package.json is same as package-lock.json 
+
+
+what is a Bundler?
+The most important package in our App,
+A bundler helps us to bundle the code, minimize the code,
+so that it can be shift to production.
+ex: webpack(create-react-app),parcel,vite etc...
+
+we are going to use parcel.
+- At the end of the day all the bundlers will do the same thing.
+
+How to use parcel in our App?
+npm install -D parcel - installing parcel as dev dependency.
+
+- we will do the minification and bundling in development itself
+so we install parcel as dev dependency.
+
+parcel is a beast.
+
+node_modules: we will install only few dependencies, but in 
+node_modules we will have lot of packages this is because every 
+dependency has its own dependencies this is called transitive 
+dependencies.
+
+How to start the app:
+npx parcel index.html 
+
+Features of parcel🚀 :
+- Dev Build 
+- Local Server
+- HMR = Hot Module Replacement - live reload 
+- File Watching Algorithm - written in c++.
+- Caching - Faster Builds.
+- Image Optimization
+- minification 
+- Bundling all the files 
+- Compressing 
+- Consistent Hashing
+- Code Splitting 
+- Differential Bundling - gives the support for older bowsers 
+    - different bundle for diff browsers.
+- Diagnostic
+- Error Handling - good error, better error suggestions.
+- Gives us the chance to test our app in 'HTTPS'.
+- Tree Shaking - removes unused code 
+- Different Dev and prod bundles.
+
+How to make production ready bundler?
+npx parcel index.html - to generate dev build.
+npx parcel build index.html - to generate prod build.
+- all the minified code will be stored in dist 
+folder.
+- no need to add dist and .parcel-cache into git .
+
+How to make our App that should be compatable for older browsers?
+- browser list 
+- we have to configure in package.json 
+
+https://browserslist.dev/?q=bGFzdCAyIHZlcnNpb25z
+
+"browserlist":[
+     "last 30 versions"
+]
+
+- till now we have created our own create-react-app.
+
+************ 3. Laying the Foundation ****************
+
+JSX 
+React Component
+Component Composition
+Cross Site Scripting/injection attacks - jsx will sanitize
+    {data} - browser won't execute it blindly, jsx will sanitize.
+
+JSX is not React ✅❌
+
+***** 4.Talk is cheap show me the code **********
+
+Props: Just normal arguments to a function
+
+*** Config Driven UI: 
+Example by taking swiggy: 
+All The UI will be configured by data.
+- For example the offers courousal and the UI will be different 
+for different locations.
+- This will be done by the data that we get from backend.
+- Suppose if we want to show red color in background in delhi,
+green in mumbai etc, we can do this with the data and this is 
+what config driven UI is.
+
+- Map,Filter,reduce.
+
+- As a senior developer we have to discuss 
+with the backend developer about the data 
+what we need in an API.
+- unique id is also important while rendering the 
+data.
+- index is an anti pattern.
+
+******* 5. Lets get Hooked *****
+
+- we are going to learn react hooks
+
+- Plan for the App 
+/* 
+Header
+    - Logo
+    - Nav Links
+Body
+    - Search
+    - RestaurantContainer
+        - RestaurantCard
+            - Img
+            - Name of Res,star Rating,Cuisines,Delivery time etc.
+Footer
+    - Copyright
+    - Links
+    - Address
+    - Contact
+
+*/
+
+Two types of imports and exports, They are:
+1.Named imports, Named exports  - import {useState}, export {useState}
+2.Default imports , default exports - import RestaurantCard, export default RestaurantCard
+
+React File Structure:
+https://legacy.reactjs.org/docs/faq-structure.html
+
+Feature That we are going to build for learning 
+Hooks:
+
+A button which filters restaurants with more that 4 star rating.
+
+Why we use Hooks: To make dynamic data according to 
+our requirement and change the ui according to the data.
+
+# React Hooks:
+    (Normal JS utility function)
+- There are multiple hooks.
+- There are 2 very important hooks they are:
+    - useState() - Superpowerful State variable in react.
+    - useEffect() 
+
+- Whenever a state variable updates/changes, react will re render the component.
+
+- React only good at dom, not in minifying and bundling the code, it 
+will be done by bundler(parcel/webpack/vite).
+
+- Reconciliation Algorithm(React Fiber)
+
+***** 6. Lets Explore the World ******
+
+- Monolithic Architecture
+- Microservice Architecture 
+
+
+- How we can make API calls and Fetch the Data using React 
+    two ways:
+
+- useEffect() Hook 
+- cors error - use cors plugin browser extension for now.
+
+
+- shimmer UI
+- Conditional Rendering - rendering according to the condition 
+
+- Why do we need state variables(useState)
+    Lets understand with a feature 
+
+
+*** 7. Lets Find the Path🚀 ****
+
+- In this top we will learn about routing, how we can create 
+different pages,nested routes. 
+
+Routing 
+- Client Side Routing 
+- Server Side Routing - network call and the page will comes from server.
+
+Dynamic Routing 
+ - Different pages for different restaurants
+
+
+******* 8. Lets Get Classy ********
+
+- we will experiment class based components
+- Let us build Team members feature in About Page
+
+
+******** 9. Optimizing our App *********
+
+- Single Responsibility principle.
+- Custom Hooks. - makes the code more reusable, modular and testable
+    - useRestaurantMenu.js in customHooks
+    use: Fetching Data logic will be there in useRestaurantMenu.js (custom Hook)
+         Displaying data will be in RestaurantMenu.js 
+         - if we get any errors or if we want to test the logic,
+            we can test only useRestaurantMenu.js which makes our work 
+            easy. 
+        - we can create our own custom hook and put in npm as a package.
+            ex: usesession storage custom hook and publish it as a npm package.
+            
+Hooks: Just a Utility Functions. 
+
+- Different Bundles for Different Functionality
+
+- Lazy Loading
+- On Demand Loading
+const Grocery = lazy(()=> import("./components/Grocery"));
+- this online code make a lot of impact.
+
+https://react.dev/reference/react/lazy
+
+
+
+********* 10.Jo diktha hai o bakthi hai **********
+Normal CSS 
+Sass  
+scss 
+
+Recomended for Big Projects/Big Companies: 
+- Styled components
+
+
+***** 11.Data is the new oil ********
+
+- How to manage data in our Application.
+- Higher Order Components.
+
+Feature: Some of the Restaurants in our Application are 
+being promoted to improve their business, so we will take the 
+existing RestaurantCard Component and will add Promoted label to 
+that RestaurantCard Component.
+
+Higher order components : Is a function that takes a component and returns 
+a component with extra features.
+
+******* 12.Lets build our store *****
+
+- Learn Redux.
+- How we can manage data using Redux.
+
+# Redux Toolkit 
+    - Install @reduxjs/toolkit and react-redux.
+    - Build our own store. - utils/appStore.js 
+    - Connect our store to our app. - using Provider from react-redux.
+    - we will create a Slice(cartSlice).
+    - dispatch(action)
+    - Selector (Read data using Selector)
+
+# important Note:
+- reduxjs/toolkit is used to manage our store.
+- react-redux is a bridge between react and reduxtoolkit.
