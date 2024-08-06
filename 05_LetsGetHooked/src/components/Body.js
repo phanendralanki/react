@@ -3,6 +3,7 @@ import restaurantList from "../utils/mockData";
 import {useState} from "react";
 const Body = () => {
  
+  //useState - used to give super powerful state variables
   // state variable - super powerful variable
   const [listOfRestaurants,setListOfRestaurants] = useState(restaurantList);
 

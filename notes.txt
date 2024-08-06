@@ -69,7 +69,7 @@ root.render(parent);
 ******** 2. Igniting The App 🚀 *************
 
 => Igniting the App - Making the code for production ready.
-=> How we can prepare our own create-react-app .
+=> How we can prepare our own create-react-app.
 
 => How we can make our App Fast?
    - can react makes our app fast - no, only for an extend 
@@ -88,7 +88,7 @@ Why do we need?
 package.json will take care of the versions of packages.
 
 What is package-lock.json?
-package-lock.json- keeps the exact version of the dependency 
+package-lock.json- keeps the exact version of the dependencies
 that is installed.
 - very useful during production, checks whether the version that 
 we have in our development i.e in package.json is same as package-lock.json 
@@ -175,7 +175,7 @@ Props: Just normal arguments to a function
 *** Config Driven UI: 
 Example by taking swiggy: 
 All The UI will be configured by data.
-- For example the offers courousal and the UI will be different 
+- For example the offers carousal and the UI will be different 
 for different locations.
 - This will be done by the data that we get from backend.
 - Suppose if we want to show red color in background in delhi,
