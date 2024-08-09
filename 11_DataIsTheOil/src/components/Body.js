@@ -13,10 +13,11 @@ const Body = () => {
   const [searchText, setSearchText] = useState("");
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
 
+  //HigherOrderComponent
   const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
 
   //Whenever state variables update, react triggers a reconciliation cycle(re-renders the component)
-  // console.log("Body rendered", listOfRestaurants);
+  console.log("Body rendered", listOfRestaurants);
 
   //How to make api call and fetch the Data
   useEffect(() => {
@@ -122,6 +123,7 @@ const Body = () => {
                 key={restaurant?.info?.id}
               >
                 {
+                  /* Higher Order Component */
                   /* if the restarant is promoted then add a promoted label to it */
                   restaurant.data?.promoted ? (
                     <RestaurantCardPromoted resData={restaurant} />

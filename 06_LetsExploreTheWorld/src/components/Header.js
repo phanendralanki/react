@@ -5,10 +5,12 @@ const Header = () => {
 
   const [btnName,setBtnName] = useState("login");
 
+  // useEffect takes two arguments i.e  i.callback function ii.Dependency error
 
-  //1.if no dependency array => useEffect will be called on every render
+  // *********** Three important cases for useEffect() hook ******************
+  //1. if no dependency array => useEffect will be called on every render
   //2. if the dependency array is empty = [] => useEffect called only once on the initial load, it will not call again and again.
-  //3. If dependency array is [btnName] => useEffect called everytime btnName is updated.
+  //3. If dependency array is [btnName] => useEffect called everytime btnName is updated/changed.
 
   useEffect(()=> {
     console.log("useEffect Called");

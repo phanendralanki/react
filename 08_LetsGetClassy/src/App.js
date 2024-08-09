@@ -53,6 +53,9 @@ const appRouter = createBrowserRouter([
       {
         path:"/grocery",
         element:<Suspense fallback={<h1>Loading.......</h1>}><Grocery /></Suspense>,
+        // we have to wrap our component in suspense 
+        // because what if the component takes more time to load(as it will not load automatically)  then we will write 
+        // what to load inside fallback like shimmerUI or loading screen
       },
       {
         path:"/restaurants/:resId",

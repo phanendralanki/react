@@ -23,14 +23,23 @@ const RestaurantMenu = () => {
   // console.log(resInfo?.cards[4].groupedCard.cardGroupMap.REGULAR.cards);
 
   // ******** Categories
-  const categories =
+  let categories =
     resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
       (c) =>
         c.card?.card?.["@type"] ===
         "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
     );
 
-  // console.log(categories);
+    // categories =
+    // resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+    //   (c) =>
+    //     c.card?.card?.["@type"] ===
+    //     "type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory"
+    // );
+
+
+
+  console.log(categories);
 
   return (
     <div className="text-center">
@@ -39,7 +48,7 @@ const RestaurantMenu = () => {
         {cuisines.join(",")} - {costForTwoMessage}
       </p>
 
-      {/*******  categories Accordian  ********/}
+      {/*******  categories Accordion  ********/}
 
       {categories.map((category,index) => (
         //*** Controlled Component */
@@ -51,6 +60,11 @@ const RestaurantMenu = () => {
           dummyData = {dummyData}
         />
       ))}
+
+
+      {/* Nested Categories Accordion */}
+      
+
     </div>
   );
 };

@@ -10,6 +10,7 @@ const Body = () => {
   const [filteredRestaurants,setFilteredRestaurants] = useState([]);
 
 
+  console.log("Body rendered");
   //Whenever state variables update, react triggers a reconciliation cycle(re-renders the component)
   // console.log("Body rendered");
 
@@ -21,13 +22,13 @@ const Body = () => {
   const fetchData = async () => {
     // 1.fetching the data from API
     const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=16.544893&lng=81.521241&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      "https://proxy.cors.sh/https://www.swiggy.com/dapi/restaurants/list/v5?lat=16.544893&lng=81.521241&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
-
+    
     //2. converting data into json format
     const json = await data.json();
 
-    // console.log(json?.data);
+    console.log(json?.data);
     //3.Changing the ui with data
     // ? - optional chaining
     setListOfRestaurants(
@@ -35,6 +36,9 @@ const Body = () => {
     );
     setFilteredRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
   };
+
+  
+
 
   //Conditional Rendering
   // if(listOfRestaurants.length === 0){
@@ -44,7 +48,8 @@ const Body = () => {
 
   return listOfRestaurants.length === 0 ? (
     <Shimmer />
-  ) : (
+  ) : 
+  (
     <div className="body">
       <div className="filter">
         {/* search field */}
@@ -64,7 +69,7 @@ const Body = () => {
               // console.log(searchText);
 
               const searchList = listOfRestaurants.filter((res) =>
-                res.info.name.toLowerCase().includes(searchText.toLowerCase())
+                res.info.name.toLowerCase().includes(searchText.toLowerCase())                
               );
               setFilteredRestaurants(searchList);
             }}

@@ -39,6 +39,9 @@ const RestaurantCard = (props) => {
 // - which will take RestaurantCard Component as input 
 // and returns RestaurantCard Promoted component
 
+//Higher Order Component
+// input - RestaurantCard ==> RestaurantCardPromoted
+
 export const withPromotedLabel = (RestaurantCard) => {
   return (props) => {
     

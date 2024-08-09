@@ -284,7 +284,13 @@ Dynamic Routing
 
 ******** 9. Optimizing our App *********
 
-- Single Responsibility principle.
+- Single Responsibility principle. 
+    - the only job of a function is to do a piece of work.
+    - Each component should have single responsibility.
+    - useful to test each component easily and we can find the bug very easily.
+    - Makes our code more reusable,testable and maintainable.
+    - our main goal is to keep our component light and understandable to others.
+
 - Custom Hooks. - makes the code more reusable, modular and testable
     - useRestaurantMenu.js in customHooks
     use: Fetching Data logic will be there in useRestaurantMenu.js (custom Hook)
@@ -297,12 +303,14 @@ Dynamic Routing
             
 Hooks: Just a Utility Functions. 
 
-- Different Bundles for Different Functionality
-
-- Lazy Loading
-- On Demand Loading
+            ********* Lazy Loading *************
+- Different Bundles for Different Functionalities.
+- code Splitting/chunking/dynamic bundling.
+- Lazy Loading or On Demand Loading.
+    - component will not be loaded automatically, it will be loaded when we call it.
+    - you can see it's use in source tab by inspecting, whenever you go to '/grocery' new build will be displayed.
 const Grocery = lazy(()=> import("./components/Grocery"));
-- this online code make a lot of impact.
+- this one line code make a lot of impact.
 
 https://react.dev/reference/react/lazy
 
@@ -327,7 +335,7 @@ being promoted to improve their business, so we will take the
 existing RestaurantCard Component and will add Promoted label to 
 that RestaurantCard Component.
 
-Higher order components : Is a function that takes a component and returns 
+Higher order components (takes the component and enhances it): Is a function that takes a component and returns 
 a component with extra features.
 
 ******* 12.Lets build our store *****
@@ -346,3 +354,95 @@ a component with extra features.
 # important Note:
 - reduxjs/toolkit is used to manage our store.
 - react-redux is a bridge between react and reduxtoolkit.
+
+
+Summary:
+- Bundler (create-react-app,vite,parcel)
+- Hooks (useState() and useEffect() - to make API Calls).
+- Config Driven UI.
+- Reconciliation Algorithm(React Fiber)
+- Microservice vs Monolithic.
+- ShimmerUI and Conditional Rendering.
+- Routing.
+- Optimizing(Single Responsibility principle,Custom Hooks,Lazy loading)
+- Higher Order Components.
+    (Takes a function and adds some Functionality)
+     - promoted label for some cards in swiggy or zomato.
+
+
+ - There will be two layers in frontend 
+    1.UI Layer (Powered By Data).
+    2.Data Layer (consists of data,states,props etc..)
+    - The major portion is to handle the Data Layer.
+    - We should be very good at data layer.
+
+ - *** Lifting the StateUp.(RestaurantMenu will handle the accordion not RestaurantCard)
+    - we want parents to control the children
+
+- controlled and uncontrolled components
+    - if the parent component does not have the control 
+    to the child component then it is uncontrolled component.
+
+    - if the parent component has control over the 
+    child component then it is controlled component.
+
+
+- Props Drilling
+    - In big projects there will be hierarchy of components i.e nested components 
+    and it will be difficult to pass data in react components.
+    - React follows one way data direction.
+    - parent pass data to child, child to nested child etc.. 
+    - if we want to access the data in grand child we have 
+    to pass it from parent to child and child to grand child
+    in the form of props and this is called props drilling.
+    - without state and props react is nothing, we can't avoid 
+    sending data in props. for example if we want to send 
+    data to less level of components then we can use props.
+    - we have to avoid props drilling if we have more levels of 
+    hierarchy.(sending props from one level to 2 or 3 is ok but if 
+    we want to send data(props) from one level to the 10th level
+    then we have to use React Context).
+    - what if we have a big hierarchy of components then 
+    how we can send data or our data is present somewhere
+    how we can access that data.
+    - If we want to access a data in header, Footer
+    or wherever we want, for that react gives us a super 
+    power called React Context.
+
+         ***** ContextAPI *****
+- we can avoid props drilling with React Context.
+- Think of some data that we need accross the app 
+without sending the data by props we can use React Context.
+- Examples: 1.Logged In user details should be accessible all across the app.
+            2.Theme, we want theme to be accessible all across the app.
+
+Code:
+----------------------
+
+UserContext.js
+------------------------------
+import { createContext } from "react";
+
+const UserContext = createContext({
+    loggedInUser: "phanendra",
+});
+
+export default UserContext;
+
+Header.js 
+-----------------------------------
+import {React,useContext} from 'react'
+import UserContext from "../context/UserContext";
+ // ****** USER CONTEXT **********
+const {loggedInUser} = useContext(UserContext);
+console.log(loggedInUser);
+
+- We can use this data any where we want to in the project.
+
+- Class Based Components Example: 
+      <div>
+        logged InUser:
+        <UserContext.Consumer>
+          { ({loggedInUser}) => <h1>{loggedInUser}</h1> }
+        </UserContext.Consumer>
+      </div>

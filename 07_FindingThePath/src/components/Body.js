@@ -26,6 +26,7 @@ const Body = () => {
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=16.544893&lng=81.521241&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
 
+    console.log(data);
     //2. converting data into json format
     const json = await data.json();
     // console.log(json?.data);
