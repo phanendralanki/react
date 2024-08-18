@@ -93,7 +93,7 @@ function App() {
     try {
       if (noteBeingEdited) {
         if (isOnline) {
-          await updateNotesInFirebase(note);
+          await updateNotesInFirebase(note,note.firebaseId);
         } else {
           await updateNoteInDB(note);
         }

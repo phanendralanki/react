@@ -29,6 +29,3 @@ function NotesList({ notes, deleteNote, editNote }) {
 }
 
 export default NotesList;
-
-
-

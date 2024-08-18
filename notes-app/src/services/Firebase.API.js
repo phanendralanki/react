@@ -18,10 +18,10 @@ export const addNotesTOFireBase = async(notes) => {
 
 //*** PUT API  */
 
-export const updateNotesInFirebase = async(userId,notesId,updatedNote) => {
+export const updateNotesInFirebase = async(updatedNote,notesId) => {
     try{
         await axios.put(
-            `${FIREBASE_URL}/notes/mynotes/${userId}/notes/${notesId}.json`,
+            `${FIREBASE_URL}/notes/mynotes/${notesId}.json`,
             updatedNote
         );
         console.log('Notes updated in firebase successfully');
@@ -32,10 +32,10 @@ export const updateNotesInFirebase = async(userId,notesId,updatedNote) => {
 
 
 //*** DELETE API */
-export const deleteNoteFromFirebase = async (firebaseId) => {
+export const deleteNoteFromFirebase = async (notesId) => {
     try {
         await axios.delete(
-            `${FIREBASE_URL}/notes/mynotes/${firebaseId}.json`
+            `${FIREBASE_URL}/notes/mynotes/${notesId}.json`
         );
         console.log('Notes deleted from firebase');
     } catch (error) {
